@@ -1,3 +1,4 @@
 npx create-next-app@latest ./ --ts
 npm install -g @sanity/cli
 sanity init
+sanity start
