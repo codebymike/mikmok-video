@@ -1,6 +1,8 @@
 import axios from "axios"
 
 import { Video } from "../types"
+import VideoCard from "../components/VideoCard"
+import NoResult from "../components/NoResult"
 
 interface IProps {
   videos: Video[]
@@ -11,9 +13,11 @@ export default function Home({ videos } : IProps) {
     <div className='flex flex-col gap-10 videos h-full'>
       {videos.length 
         ? videos?.map((video: Video) => (
-          video.caption
+          <VideoCard post={video} key={video._id} />
         )) 
-        : "" 
+        : (
+          <NoResult text={'No Videos'} />
+        )
         }
     </div>
   )
