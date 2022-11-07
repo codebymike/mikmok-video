@@ -1,6 +1,10 @@
 import React from 'react'
 
-const NoResult = () => {
+interface IProps {
+  text: string
+}
+
+const NoResult = ({ text }: IProps) => {
   return (
     <div>NoResult</div>
   )
