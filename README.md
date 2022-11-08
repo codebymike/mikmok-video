@@ -1,7 +1,10 @@
 # Fullstack React Video Platform
 
+## MikMok
+
 - React (Typescript)
 - Next.js
-- OAuth
+- Google OAuth
 - Sanity CMS
 - Zustand (State Mangement)
+- Tailwind / React-icons
