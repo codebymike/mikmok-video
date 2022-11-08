@@ -29,6 +29,7 @@ const Navbar = () => {
                     src={Logo}
                     alt="Tiktik"
                     layout="responsive"
+                    priority
                 />
             </div>
         </Link>
@@ -52,6 +53,7 @@ const Navbar = () => {
                     alt='user'
                     width={40}
                     height={40}
+                    priority
                   />
                 </div>
               </Link>
