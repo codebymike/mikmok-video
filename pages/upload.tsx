@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { SanityAssetDocument } from '@sanity/client';
 import { useRouter } from 'next/router'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
@@ -9,7 +10,32 @@ import { client } from '../utils/client'
 
 const Upload = () => {
     const [loading, setLoading] = useState(false);
-    const [videoAsset, setVideoAsset] = useState();
+    const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
+    const [wrongFileType, setWrongFileType] = useState(false);
+
+    const uploadVideo = async (e: any) => {
+        const selectedFile = e.target.files[0];
+        const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+    
+        // uploading asset to sanity
+        if (fileTypes.includes(selectedFile.type)) {
+          setWrongFileType(false);
+          setLoading(true);
+    
+          client.assets
+            .upload('file', selectedFile, {
+              contentType: selectedFile.type,
+              filename: selectedFile.name,
+            })
+            .then((data) => {
+              setVideoAsset(data);
+              setLoading(false);
+            });
+        } else {
+          setLoading(false);
+          setWrongFileType(true);
+        }
+      };
 
     return (
         <div className='flex w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
