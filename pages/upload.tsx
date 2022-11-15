@@ -125,6 +125,7 @@ const Upload = () => {
             </div>
 
             <div className='flex flex-col gap-3 pb-10'>
+
                 <label className='text-md font-medium '>Caption</label>
                 <input
                     type='text'
@@ -132,8 +133,8 @@ const Upload = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     className='rounded lg:after:w-650 outline-none text-md border-2 border-gray-200 p-2'
                 />
+                
                 <label className='text-md font-medium '>Choose a topic</label>
-
                 <select
                     onChange={(e) => {
                     setTopic(e.target.value);
@@ -150,6 +151,7 @@ const Upload = () => {
                     </option>
                     ))}
                 </select>
+
                 <div className='flex gap-6 mt-10'>
                     <button
                     onClick={handleDiscard}
@@ -167,8 +169,8 @@ const Upload = () => {
                     {savingPost ? 'Posting...' : 'Post'}
                     </button>
                 </div>
-            </div>
 
+            </div>
           </div>
         </div>
     );
