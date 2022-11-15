@@ -6,6 +6,7 @@ import { MdDelete } from 'react-icons/md'
 import axios from 'axios'
 
 import useAuthStore from '../store/authStore'
+import { BASE_URL } from '../utils';
 import { client } from '../utils/client'
 import { topics } from '../utils/constants'
 
@@ -17,11 +18,13 @@ const Upload = () => {
     const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>()
     const [wrongFileType, setWrongFileType] = useState(false)
 
+    const userProfile: any = useAuthStore((state) => state.userProfile);
+    const router = useRouter();
+
     const uploadVideo = async (e: any) => {
         const selectedFile = e.target.files[0];
         const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
     
-        // uploading asset to sanity
         if (fileTypes.includes(selectedFile.type)) {
           setWrongFileType(false);
           setLoading(true);
@@ -41,7 +44,33 @@ const Upload = () => {
         }
     };
 
-    const handlePost = async () => {}
+    const handlePost = async () => {
+        if (caption && videoAsset?._id && topic) {
+          setSavingPost(true);
+    
+          const doc = {
+            _type: 'post',
+            caption,
+            video: {
+              _type: 'file',
+              asset: {
+                _type: 'reference',
+                _ref: videoAsset?._id,
+              },
+            },
+            userId: userProfile?._id,
+            postedBy: {
+              _type: 'postedBy',
+              _ref: userProfile?._id,
+            },
+            topic,
+          };
+    
+          await axios.post(`${BASE_URL}/api/post`, doc);
+            
+          router.push('/');
+        }
+      };
 
     const handleDiscard = () => {
         setSavingPost(false);
@@ -133,7 +162,7 @@ const Upload = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     className='rounded lg:after:w-650 outline-none text-md border-2 border-gray-200 p-2'
                 />
-                
+
                 <label className='text-md font-medium '>Choose a topic</label>
                 <select
                     onChange={(e) => {
