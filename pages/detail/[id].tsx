@@ -38,6 +38,12 @@ const Detail = ({ postDetails }: IProps) => {
         }
       };
 
+    useEffect(() => {
+        if (post && videoRef?.current) {
+            videoRef.current.muted = isVideoMuted;
+        }
+    }, [post, isVideoMuted]);
+
     const handleLike = async (like: boolean) => {
         if (userProfile) {
             const res = await axios.put(`${BASE_URL}/api/like`, {
@@ -90,6 +96,7 @@ const Detail = ({ postDetails }: IProps) => {
                   )}
                 </div>
               </div>
+
               <div className='relative w-[1000px] md:w-[900px] lg:w-[700px]'>
                 <div className='lg:mt-20 mt-10'>
                   <Link href={`/profile/${post.postedBy._id}`}>
@@ -110,11 +117,23 @@ const Detail = ({ postDetails }: IProps) => {
                       </div>
                     </div>
                   </Link>
+                  
                   <div className='px-10'>
                     <p className=' text-md text-gray-600'>{post.caption}</p>
                   </div>
+
+                  <div className='mt-10 px-10'>
+                    {userProfile && <LikeButton
+                    likes={post.likes}
+                    flex='flex'
+                    handleLike={() => handleLike(true)}
+                    handleDislike={() => handleLike(false)}
+                    />}
+                  </div>
+
                 </div>
               </div>
+
             </div>
           )}
         </>
