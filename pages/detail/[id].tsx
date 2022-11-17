@@ -10,13 +10,19 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 
 import { BASE_URL } from '../../utils';
+import { Video } from '../../types'
 
-const Detail = () => {
+interface IProps{
+    postDetails: Video
+}
+
+const Detail = ({ postDetails }: IProps) => {
   return (
     <div>Detail</div>
   )
 }
 
+// https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
 export const getServerSideProps = async ({
     params: { id },
   }: {
