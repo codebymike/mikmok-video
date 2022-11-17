@@ -9,6 +9,10 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { BsFillPlayFill } from 'react-icons/bs'
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi'
 
+import Comments from '../../components/Comments';
+import LikeButton from '../../components/LikeButton';
+
+
 import { BASE_URL } from '../../utils'
 import { Video } from '../../types'
 import useAuthStore from '../../store/authStore';
@@ -130,6 +134,14 @@ const Detail = ({ postDetails }: IProps) => {
                     handleDislike={() => handleLike(false)}
                     />}
                   </div>
+
+                  <Comments
+                    comment={comment}
+                    setComment={setComment}
+                    addComment={addComment}
+                    comments={post.comments}
+                    isPostingComment={isPostingComment}
+                  />
 
                 </div>
               </div>
