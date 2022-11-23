@@ -1,40 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { NextPage } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
-import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
-import { GoVerified } from 'react-icons/go';
-import { BsPlay } from 'react-icons/bs';
+import React, { useEffect, useRef, useState } from 'react'
+import { NextPage } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi'
+import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs'
+import { GoVerified } from 'react-icons/go'
+import { BsPlay } from 'react-icons/bs'
 
-import { Video } from './../types';
+import { Video } from './../types'
 
 interface IProps {
-  post: Video;
-  isShowingOnHome?: boolean;
+  post: Video
+  isShowingOnHome?: boolean
 }
 
 const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, likes }, isShowingOnHome = true }) => {
-  const [playing, setPlaying] = useState(false);
-  const [isHover, setIsHover] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false)
+  const [isHover, setIsHover] = useState(false)
+  const [isVideoMuted, setIsVideoMuted] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const onVideoPress = () => {
     if (playing) {
-      videoRef?.current?.pause();
-      setPlaying(false);
+      videoRef?.current?.pause()
+      setPlaying(false)
     } else {
-      videoRef?.current?.play();
-      setPlaying(true);
+      videoRef?.current?.play()
+      setPlaying(true)
     }
-  };
+  }
 
   useEffect(() => {
     if (videoRef?.current) {
-      videoRef.current.muted = isVideoMuted;
+      videoRef.current.muted = isVideoMuted
     }
-  }, [isVideoMuted]);
+  }, [isVideoMuted])
 
   if(!isShowingOnHome) {
     return (
@@ -138,7 +138,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default VideoCard;

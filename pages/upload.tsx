@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { SanityAssetDocument } from '@sanity/client';
+import { SanityAssetDocument } from '@sanity/client'
 import { useRouter } from 'next/router'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import axios from 'axios'
 
 import useAuthStore from '../store/authStore'
-import { BASE_URL } from '../utils';
+import { BASE_URL } from '../utils'
 import { client } from '../utils/client'
 import { topics } from '../utils/constants'
 
@@ -18,16 +18,16 @@ const Upload = () => {
     const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>()
     const [wrongFileType, setWrongFileType] = useState(false)
 
-    const userProfile: any = useAuthStore((state) => state.userProfile);
-    const router = useRouter();
+    const userProfile: any = useAuthStore((state) => state.userProfile)
+    const router = useRouter()
 
     const uploadVideo = async (e: any) => {
-        const selectedFile = e.target.files[0];
-        const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+        const selectedFile = e.target.files[0]
+        const fileTypes = ['video/mp4', 'video/webm', 'video/ogg']
     
         if (fileTypes.includes(selectedFile.type)) {
-          setWrongFileType(false);
-          setLoading(true);
+          setWrongFileType(false)
+          setLoading(true)
     
           client.assets
             .upload('file', selectedFile, {
@@ -35,18 +35,18 @@ const Upload = () => {
               filename: selectedFile.name,
             })
             .then((data) => {
-              setVideoAsset(data);
-              setLoading(false);
-            });
+              setVideoAsset(data)
+              setLoading(false)
+            })
         } else {
-          setLoading(false);
-          setWrongFileType(true);
+          setLoading(false)
+          setWrongFileType(true)
         }
-    };
+    }
 
     const handlePost = async () => {
         if (caption && videoAsset?._id && topic) {
-          setSavingPost(true);
+          setSavingPost(true)
     
           const doc = {
             _type: 'post',
@@ -64,20 +64,20 @@ const Upload = () => {
               _ref: userProfile?._id,
             },
             topic,
-          };
+          }
     
-          await axios.post(`${BASE_URL}/api/post`, doc);
+          await axios.post(`${BASE_URL}/api/post`, doc)
             
-          router.push('/');
+          router.push('/')
         }
-      };
+      }
 
     const handleDiscard = () => {
-        setSavingPost(false);
-        setVideoAsset(undefined);
-        setCaption('');
-        setTopic('');
-    };
+        setSavingPost(false)
+        setVideoAsset(undefined)
+        setCaption('')
+        setTopic('')
+    }
 
     return (
         <div className='flex w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
@@ -166,7 +166,7 @@ const Upload = () => {
                 <label className='text-md font-medium '>Choose a topic</label>
                 <select
                     onChange={(e) => {
-                    setTopic(e.target.value);
+                    setTopic(e.target.value)
                     }}
                     className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
                 >
@@ -202,8 +202,8 @@ const Upload = () => {
             </div>
           </div>
         </div>
-    );
+    )
 
-};
+}
 
-export default Upload;
+export default Upload

@@ -17,7 +17,7 @@ const NoResult = ({ text }: IProps) => {
       </p>
       <p className='text-2xl text-center'>{text}</p>
     </div>
-  );
-};
+  )
+}
 
 export default NoResult

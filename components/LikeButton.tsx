@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { MdFavorite } from 'react-icons/md';
-import { NextPage } from 'next';
+import React, { useEffect, useState } from 'react'
+import { MdFavorite } from 'react-icons/md'
+import { NextPage } from 'next'
 
-import useAuthStore from '../store/authStore';
+import useAuthStore from '../store/authStore'
 
 interface IProps {
-  likes: any;
-  flex: string;
-  handleLike: () => void;
-  handleDislike: () => void;
+  likes: any
+  flex: string
+  handleLike: () => void
+  handleDislike: () => void
 }
 
 const LikeButton: NextPage<IProps> = ({ likes, flex, handleLike, handleDislike }) => {
-  const [alreadyLiked, setAlreadyLiked] = useState(false);
-  const { userProfile }: any = useAuthStore();
-  const filterLikes = likes?.filter((item: any) => item._ref === userProfile?._id);
+  const [alreadyLiked, setAlreadyLiked] = useState(false)
+  const { userProfile }: any = useAuthStore()
+  const filterLikes = likes?.filter((item: any) => item._ref === userProfile?._id)
 
   useEffect(() => {
     if (filterLikes?.length > 0) {
-      setAlreadyLiked(true);
+      setAlreadyLiked(true)
     } else {
-      setAlreadyLiked(false);
+      setAlreadyLiked(false)
     }
-  }, [filterLikes, likes]);
+  }, [filterLikes, likes])
 
   return (
     <div className={`${flex} gap-6`}>
@@ -39,7 +39,7 @@ const LikeButton: NextPage<IProps> = ({ likes, flex, handleLike, handleDislike }
         <p className='text-md font-semibold '>{likes?.length || 0}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LikeButton;
+export default LikeButton

@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { AiFillHome, AiOutlineMenu } from 'react-icons/ai';
-import { ImCancelCircle } from 'react-icons/im';
+import React, { useState } from 'react'
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { AiFillHome, AiOutlineMenu } from 'react-icons/ai'
+import { ImCancelCircle } from 'react-icons/im'
 
-import SuggestedAccounts from './SuggestedAccounts';
-import Discover from './Discover';
-import Footer from './Footer';
+import SuggestedAccounts from './SuggestedAccounts'
+import Discover from './Discover'
+import Footer from './Footer'
 
 const Sidebar: NextPage = () => {
-  const [showSidebar, setShowSidebar] = useState<Boolean>(true);
-  const { pathname } = useRouter();
+  const [showSidebar, setShowSidebar] = useState<Boolean>(true)
+  const { pathname } = useRouter()
 
-  const activeLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded';
-  const normalLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded';
+  const activeLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded'
+  const normalLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded'
 
   return (
     <div>
@@ -45,7 +45,7 @@ const Sidebar: NextPage = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default Sidebar;

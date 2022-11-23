@@ -9,13 +9,13 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { BsFillPlayFill } from 'react-icons/bs'
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi'
 
-import Comments from '../../components/Comments';
-import LikeButton from '../../components/LikeButton';
+import Comments from '../../components/Comments'
+import LikeButton from '../../components/LikeButton'
 
 
 import { BASE_URL } from '../../utils'
 import { Video } from '../../types'
-import useAuthStore from '../../store/authStore';
+import useAuthStore from '../../store/authStore'
 
 interface IProps{
     postDetails: Video
@@ -32,7 +32,7 @@ const Detail = ({ postDetails }: IProps) => {
     const videoRef = useRef<HTMLVideoElement>(null)
     const router = useRouter()
 
-    const { userProfile }: any = useAuthStore();
+    const { userProfile }: any = useAuthStore()
 
     const onVideoClick = () => {
         if (isPlaying) {
@@ -42,13 +42,13 @@ const Detail = ({ postDetails }: IProps) => {
           videoRef?.current?.play()
           setIsPlaying(true)
         }
-      };
+      }
 
     useEffect(() => {
         if (post && videoRef?.current) {
-            videoRef.current.muted = isVideoMuted;
+            videoRef.current.muted = isVideoMuted
         }
-    }, [post, isVideoMuted]);
+    }, [post, isVideoMuted])
 
     const handleLike = async (like: boolean) => {
         if (userProfile) {
@@ -56,28 +56,28 @@ const Detail = ({ postDetails }: IProps) => {
             userId: userProfile._id,
             postId: post._id,
             like
-            });
-            setPost({ ...post, likes: res.data.likes });
+            })
+            setPost({ ...post, likes: res.data.likes })
         }
-    };
+    }
 
     const addComment = async (e: { preventDefault: () => void }) => {
-      e.preventDefault();
+      e.preventDefault()
   
       if (userProfile) {
         if (comment) {
-          setIsPostingComment(true);
+          setIsPostingComment(true)
           const res = await axios.put(`${BASE_URL}/api/post/${post._id}`, {
             userId: userProfile._id,
             comment,
-          });
+          })
   
-          setPost({ ...post, comments: res.data.comments });
-          setComment('');
-          setIsPostingComment(false);
+          setPost({ ...post, comments: res.data.comments })
+          setComment('')
+          setIsPostingComment(false)
         }
       }
-    };
+    }
 
     return (
         <>
@@ -176,13 +176,13 @@ const Detail = ({ postDetails }: IProps) => {
 export const getServerSideProps = async ({
     params: { id },
   }: {
-    params: { id: string };
+    params: { id: string }
   }) => {
     const res = await axios.get(`${BASE_URL}/api/post/${id}`)
   
     return {
       props: { postDetails: res.data },
-    };
-  };
+    }
+  }
 
 export default Detail
