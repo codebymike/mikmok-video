@@ -8,7 +8,15 @@ import NoResult from '../../components/NoResult'
 import { IUser, Video } from '../../types'
 import { BASE_URL } from '../../utils'
 
-const Profile = () => {
+interface IProps {
+    data: {
+      user: IUser;
+      userVideos: Video[];
+      userLikedVideos: Video[];
+    };
+}
+
+const Profile = ({ data }: IProps) => {
     return (
         <div>Profile</div>
     )
