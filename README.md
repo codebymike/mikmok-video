@@ -22,5 +22,7 @@ Exercise to play around with Zustand, Sanity CMS and practise Tailwind
 ### Install & Setup
 - Frontend
     - $ npm run dev
+    - (http://localhost:3000)
 - Backend
     - $ cd ./mikmok && sanity start
+    - (http://localhost:3333)
