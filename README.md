@@ -1,6 +1,6 @@
 # 'Tiktok Clone' Video Platform
 
-Exercise to play around with Zustand, Sanity CMS and practise Tailwind
+Exercise to play around with Zustand, Sanity CMS and practice Tailwind
 
 ## MikMok
 
