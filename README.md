@@ -20,7 +20,7 @@ Exercise to play around with Zustand, Sanity CMS and practise Tailwind
 - Mobile friendly nav and template
 
 ### Install & Setup
-Frontend
-- $ npm run dev
-Backend
-- $ cd ./sanity && sanity start
+- Frontend
+    - $ npm run dev
+- Backend
+    - $ cd ./sanity && sanity start
