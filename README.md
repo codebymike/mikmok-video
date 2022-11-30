@@ -13,11 +13,11 @@ Exercise to play around with Zustand, Sanity CMS and practice Tailwind
 - Tailwind / React-icons
 
 ### Features
-- Accounts / Upload Video
-- Search videos (and accounts)
-- Comments
-- Mute & Video controls
-- Mobile friendly nav and template
+- Authentication & Upload Video
+- Search (Videos & Accounts)
+- Likes / Comments
+- Video controls + Mute
+- Reponsive Nav
 
 ### Install & Setup
 - Frontend
